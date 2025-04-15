@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment  # Name of the deployment
+spec:
+  replicas: 2  # Number of replicas (pods) to run
+  selector:
+    matchLabels:
+      app: flask-app  # Selector to match the deployment with pods
+  template:
+    metadata:
+      labels:
+        app: flask-app  # Labels for the pod, should match the selector
+    spec:
+      containers:
+        - name: flask-container  # Name of the container
+          image: yourdockerhubusername/simple-flask-app:latest  # Docker image URL from Docker Hub
+          ports:
+            - containerPort: 5000  # Expose the app on port 5000 inside the container
